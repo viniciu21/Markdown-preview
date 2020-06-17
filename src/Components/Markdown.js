@@ -16,24 +16,40 @@ import('highlight.js').then((hljs) => {
 
 const Markdown = () => {
 
-    const [text, setText] = useState('')
+    const [text, setText] = useState('');
+
+    const [textHtml, setTextHtml] = useState('');
 
     const handleChange = (e) => {
         setText(e.target.value);
+        setTextHtml(e.target.value);
+
     }
 
     const handleSave = () => {
+        const nameOfFile = prompt('nome do arquivo');
         const blob = new Blob([text], {type: "text/plain;charset=utf-8"});
-        saveAs(blob, "README.md")
+        saveAs(blob, `${nameOfFile || "README"}.md`)
     }
+    const handleEnter = (e) => {
+        if(e.key === "Enter"){
+            const divText = `${text}\n`;
+            setTextHtml(divText);
+        }
+    }
+
     return(
         <S.MarkdownPreviewer>
-            <S.Header>QUaluqer coisa</S.Header>
-            <button onClick={() => handleSave()}>lala</button>
+            <S.Header>Markdown Previewer</S.Header>
             <S.Text>
-                <S.Textarea value={text} onChange={(e) => handleChange(e)}/>
-                <S.TextFormated dangerouslySetInnerHTML={{ __html: marked(text)}}/>
+                <S.Textarea 
+                    value={textHtml} 
+                    onChange={(e) => handleChange(e)} 
+                    onKeyPress={(e) => handleEnter(e)}
+                />
+                <S.TextFormated dangerouslySetInnerHTML={{ __html: marked(textHtml)}}/>
             </S.Text>
+            <S.ButtonSave onClick={() => handleSave()}>Save as ...</S.ButtonSave>
         </S.MarkdownPreviewer>
     )
 }

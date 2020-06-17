@@ -11,7 +11,9 @@ export const MarkdownPreviewer = styled.div`
 export const Header = styled.header`
     color: white;
     width: 100vw;
-    text-align: right;
+    text-align: center;
+    padding: 10px;
+    font-size: 50px;
 `
 
 export const Text = styled.div`
@@ -20,7 +22,7 @@ export const Text = styled.div`
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 100%;
+    height: 90%;
 `
 
 export const Textarea = styled.textarea`
@@ -40,12 +42,31 @@ export const TextFormated = styled.div`
     border-radius: 5px;
     column-gap: 10px;
     outline: none;
-    padding: 10px;
+    padding: 20px;
 
     p{
         word-break: break-all;
     }
+
     overflow: scroll;
 
+`
+
+export const ButtonSave = styled.button`
+    padding: 20px;
+    width: 110px;
+    margin: 10px auto;
+    margin-bottom: 50px;
+    border-radius: 10px;
+    background-color: #9d50bb;
+    color: white;
+    text-align: center;
+    font-weight: bolder;
+    border: black;
+    transition: background-color 1s;
+    cursor: pointer;
+    :hover{
+        background-color: violet;
+    }
 `
 
